@@ -6,9 +6,20 @@ const port = parseInt(process.env.PORT, 10) || 8000;
 const app = express();
 
 // import environmental variables from our local.env file
-require("dotenv").config({ path: "local.env" });
+require("dotenv").config();
 
-//connect to mongodb
+// connect to mongodb
+mongoose
+  .connect(process.env.DB_HOST, {
+    auth: {
+      user: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+    },
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("connected to mongodb "))
+  .catch((error) => console.log(`could not connect to mongodb: ${error}`));
 
 // set static path
 app.use(express.static(path.join(__dirname, "public")));

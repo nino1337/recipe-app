@@ -1,4 +1,4 @@
 node_modules
 /public
-local.env
+.env
 coverage
