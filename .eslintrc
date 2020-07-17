@@ -1,0 +1,49 @@
+{
+    "plugins": ["fp", "prettier", "import"],
+    "extends": [
+        "airbnb-base",
+        "plugin:react/recommended",
+        "plugin:jsx-a11y/recommended",
+        "eslint-config-prettier",
+        "prettier"
+    ],
+    "rules": {
+        "no-use-before-define": 0,
+        "consistent-return": 0,
+        "linebreak-style": 0,
+        "indent": [
+            "error",
+            4,
+            {
+                "SwitchCase": 1,
+                "ignoredNodes": ["TemplateLiteral"]
+            }
+        ],
+        "no-underscore-dangle": ["error"],
+        "import/no-extraneous-dependencies": [
+            "error",
+            { "devDependencies": true }
+        ],
+        "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }]
+    },
+    "settings": {
+        "import/core-modules": "test-utils",
+        "import/resolver": {
+            "node": {
+                "extensions": [".js", ".jsx", ".ts", ".tsx"]
+            }
+        }
+    },
+    "env": {
+        "jest": true,
+        "browser": true,
+        "node": true
+    },
+    "globals": {
+        "React": "readonly",
+        "shallow": "readonly",
+        "render": "readonly",
+        "mount": "readonly",
+        "sinon": "readonly"
+    }
+}
