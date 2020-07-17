@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
 const routes = require("./routes");
+const authorization = require("./middleware/authorization");
 const port = parseInt(process.env.PORT, 10) || 8000;
 const app = express();
 
@@ -28,6 +29,10 @@ app.use(express.json());
 
 // set routes
 app.use("/", routes);
+
+app.get("/", authorization, (req, res) => {
+  console.log(req);
+});
 
 app.listen(port, () => {
   console.log(`app listening on port: ${port}`);

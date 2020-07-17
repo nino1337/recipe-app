@@ -1,13 +1,11 @@
 const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
-  let token = req.body.token || req.headers.authorization;
-  if (!token) return res.status(404).send("No access token provided.");
+  let token = req.headers["auth-token"];
+  if (!token) return res.status(401).send("No access token provided.");
 
   try {
-    // extract token from bearer token
-    token = token.split(" ")[1];
-    const decoded = jwt.verify(token, process.env.SECRET);
+    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
     req.user = decoded;
     next();
   } catch (err) {
