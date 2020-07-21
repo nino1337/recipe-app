@@ -74,6 +74,7 @@ pre {
  */
 
 a {
+  color: inherit;
   background-color: transparent;
 }
 
@@ -136,6 +137,10 @@ sub {
 
 sup {
   top: -0.5em;
+}
+
+a {
+  text-decoration: none;
 }
 
 /* Embedded content
