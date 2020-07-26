@@ -6,10 +6,10 @@ const defaultConfig = {
 
 export const userApiInstance = axios.create({
   ...defaultConfig,
-  baseURL: `${process.env.REACT_APP_DOMAIN}/api/user/`,
+  baseURL: `${process.env.REACT_APP_USER_SERVICE}/api/user/`,
 });
 
 export const trainingDataApiInstance = axios.create({
   ...defaultConfig,
-  baseURL: `${process.env.REACT_APP_DOMAIN}/api/training/`,
+  baseURL: `${process.env.REACT_APP_USER_SERVICE}/api/training/`,
 });

@@ -7,7 +7,7 @@ import { userRoutes, loginRegisterRoutes } from './routes';
 import userService from './service/userService';
 
 function App() {
-  const [loading, setLoading] = useState(true); // TODO: integrate loading state
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const history = useHistory();
 

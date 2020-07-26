@@ -1,11 +1,9 @@
 const express = require('express');
-const path = require('path');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
 const routes = require('./routes');
 
-const port = parseInt(process.env.PORT, 10) || 8000;
 const app = express();
 
 app.use(cors());
@@ -28,14 +26,12 @@ mongoose
   .then(() => console.log('connected to mongodb '))
   .catch((error) => console.log(`could not connect to mongodb: ${error}`));
 
-// set static path
-app.use(express.static(path.join(__dirname, 'public')));
-
 app.use(express.json());
 
 // set routes
 app.use('/', routes);
 
+const port = parseInt(process.env.PORT, 10);
 app.listen(port, () => {
   console.log(`app listening on port: ${port}`);
 });

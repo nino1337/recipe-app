@@ -1,26 +1,15 @@
 {
-  "name": "recipe-app",
+  "name": "training-app",
   "version": "1.0.0",
-  "description": "An app to store recipes",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "devStart": "nodemon app.js",
-    "start": "cross-env NODE_ENV=production node app.js"
+  "description": "app to track your training progression",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nino1337/recipe-app.git"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@hapi/joi": "^17.1.1",
-    "bcrypt": "^5.0.0",
-    "config": "^3.3.1",
-    "cors": "^2.8.5",
-    "cross-env": "^7.0.2",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.9.22",
-    "morgan": "^1.10.0"
+  "bugs": {
+    "url": "https://github.com/nino1337/recipe-app/issues"
   },
   "devDependencies": {
     "eslint": "^7.2.0",
@@ -32,7 +21,6 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.0",
-    "nodemon": "^2.0.4",
     "prettier": "^2.0.5"
   }
 }
