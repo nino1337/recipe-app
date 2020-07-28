@@ -16,6 +16,8 @@ const DrawerComponent = ({ isOpen, onLinkClick }) => {
   const classes = styles();
   const history = useHistory();
   const currentPath = history.location.pathname;
+  const getActiveClass = (route) =>
+    currentPath === route.href ? classes.activeItem : '';
 
   return (
     <Drawer open={isOpen}>
@@ -23,9 +25,7 @@ const DrawerComponent = ({ isOpen, onLinkClick }) => {
         <MenuList>
           {userRoutes.map((route) => (
             <Link key={route.title} to={route.href} onClick={onLinkClick}>
-              <MenuItem
-                className={{ [classes.activeItem]: currentPath === route.href }}
-              >
+              <MenuItem className={getActiveClass(route)}>
                 <ListItemIcon className={classes.listIconWrapper}>
                   <route.icon className={classes.icon} />
                 </ListItemIcon>

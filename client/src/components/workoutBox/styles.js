@@ -1,9 +1,10 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export default makeStyles({
-  root: {
-    background: '#eaeaea',
-    minHeight: '100vh',
-    paddingTop: '16px',
+  exercise: {
+    fontWeight: 'bold',
+  },
+  date: {
+    fontSize: '12px',
   },
 });

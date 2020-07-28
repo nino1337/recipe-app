@@ -16,10 +16,6 @@ require('dotenv').config();
 // connect to mongodb
 mongoose
   .connect(process.env.DB_HOST, {
-    auth: {
-      user: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-    },
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

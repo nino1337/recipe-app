@@ -1,18 +1,19 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { AppBar, Toolbar, Button, Typography } from '@material-ui/core';
-import {
-  FitnessCenter,
-  Person,
-  MenuSharp,
-  MenuOpenSharp,
-} from '@material-ui/icons';
-import { Link } from 'react-router-dom';
+import { FitnessCenter, MenuSharp, MenuOpenSharp } from '@material-ui/icons';
+import { Link, useHistory } from 'react-router-dom';
 
 import styles from './styles';
+import { userRoutes } from '../../../../routes';
 
 const Header = ({ user, onBurgerClick, isDrawerOpen }) => {
   const classes = styles();
+  const history = useHistory();
+  const currentPath = history.location.pathname;
+  const getCurrentRouteTitle = () => {
+    return userRoutes.find((route) => currentPath === route.href).title;
+  };
 
   const getMenuItem = () => {
     if (isDrawerOpen) {
@@ -39,11 +40,13 @@ const Header = ({ user, onBurgerClick, isDrawerOpen }) => {
         {user && (
           <>
             {getMenuItem()}
+            <Typography>{getCurrentRouteTitle()}</Typography>
             <FitnessCenter fontSize="large" className={classes.icon} />
           </>
         )}
         {!user && (
           <>
+            <FitnessCenter fontSize="large" className={classes.iconLeft} />
             <Button color="inherit">
               <Link to="/login">Login</Link>
             </Button>

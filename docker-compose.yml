@@ -1,6 +1,22 @@
 version: '3'
 services:
-  user-auth-service:
-    build: './user-auth-service'
+  user_auth_service:
+    container_name: 'training-app-user-service'
+    build: ./user-auth-service
+    restart: always
     ports:
       - '8090:8090'
+    depends_on:
+      - mongo
+  client:
+    container_name: 'training-app-client'
+    build: ./client
+    ports:
+      - '80:80'
+    depends_on:
+      - user_auth_service
+  mongo:
+    image: 'mongo'
+    container_name: 'training-app-mongo'
+    ports:
+      - '27017:27017'

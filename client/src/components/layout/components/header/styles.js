@@ -7,6 +7,9 @@ export default makeStyles((theme) => ({
   icon: {
     marginLeft: 'auto',
   },
+  iconLeft: {
+    marginRight: 'auto',
+  },
   userWrapper: {
     display: 'flex',
     alignItems: 'center',

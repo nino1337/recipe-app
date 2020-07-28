@@ -1,10 +1,15 @@
 import React from 'react';
 import propTypes from 'prop-types';
+import { Container } from '@material-ui/core';
 import styles from './styles';
 
 const Content = ({ children }) => {
   const classes = styles();
-  return <main className={classes.root}>{children}</main>;
+  return (
+    <main className={classes.root}>
+      <Container>{children}</Container>
+    </main>
+  );
 };
 
 Content.propTypes = {
