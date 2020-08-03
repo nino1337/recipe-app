@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <article>
       <Typography variant="h4">Deine letzten drei Workouts</Typography>
-      <Box m={2}>
+      <Box mt={2} mb={3}>
         <Grid container spacing={3}>
           {workouts.map((workout, index) => (
             <WorkoutBox workout={workout} key={index} />
@@ -20,7 +20,7 @@ const Home = () => {
         </Grid>
       </Box>
       <Typography variant="h4">Übungen mit Progression</Typography>
-      <Box m={2}>
+      <Box mt={2} mb={3}>
         <Grid container spacing={3}>
           {exercisePlots.map((plot) => (
             <Chart key={plot.title} plot={plot} />
@@ -28,7 +28,7 @@ const Home = () => {
         </Grid>
       </Box>
       <Typography variant="h4">Übungen mit Stagnierung</Typography>
-      <Box m={2}>
+      <Box mt={2}>
         <Grid container spacing={3}>
           {exercisePlotsStagnation.map((plot) => (
             <Chart key={plot.title} plot={plot} />

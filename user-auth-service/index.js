@@ -29,7 +29,7 @@ app.use('/', routes);
 
 const port = parseInt(process.env.PORT, 10);
 app.listen(port, () => {
-  console.log(`app listening on port: ${port}`);
+  console.log(`user-auth-service listening on port: ${port}`);
 });
 
 module.exports = app;
