@@ -1,14 +1,14 @@
 {
   "name": "workout-data-service",
   "version": "1.0.0",
-  "description": "",
+  "description": "manage workout data",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devStart": "nodemon index.js",
     "start": "cross-env NODE_ENV=production node index.js"
   },
-  "author": "",
+  "author": "Nino Dornemann",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",

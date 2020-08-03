@@ -10,7 +10,7 @@ app.use(cors());
 
 app.use(morgan('combined'));
 
-// import environmental variables from our local.env file
+// import environmental variables from our .env file
 require('dotenv').config();
 
 // connect to mongodb
@@ -19,7 +19,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log('connected to mongodb '))
+  .then(() => console.log('connected to mongodb'))
   .catch((error) => console.log(`could not connect to mongodb: ${error}`));
 
 app.use(express.json());

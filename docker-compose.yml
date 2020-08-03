@@ -8,6 +8,14 @@ services:
       - '8090:8090'
     depends_on:
       - mongo
+  workout_data_service:
+    container_name: 'training-app-workout-service'
+    build: './workout-data-service'
+    restart: always
+    ports:
+      - '8000:8000'
+    depends_on:
+      - mongo
   client:
     container_name: 'training-app-client'
     build: ./client
