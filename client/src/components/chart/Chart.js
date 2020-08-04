@@ -5,8 +5,18 @@ import {
   VictoryLine,
   VictoryLegend,
   VictoryAxis,
-  VictoryLabel,
+  VictoryVoronoiContainer,
 } from 'victory';
+import {
+  Line,
+  LineChart,
+  CartesianGrid,
+  YAxis,
+  XAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from 'recharts';
 import { Typography } from '@material-ui/core';
 import { withTheme } from '@material-ui/core/styles';
 import moment from 'moment';
@@ -48,12 +58,37 @@ const Chart = ({ plot, theme }) => {
 
   return (
     <Widget dimensions={{ xs: 12, sm: 6, lg: 4 }}>
-      <Typography className={classes.plotTitle}>{plot.title}</Typography>
-      <VictoryChart
+      <Typography gutterBottom className={classes.plotTitle}>
+        {plot.title}
+      </Typography>
+      <ResponsiveContainer height={250}>
+        <LineChart data={plot.data} margin={{ left: -15, top: 10 }}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis
+            dataKey="epoch"
+            tickFormatter={(epoch) => getDateFromEpochTimestamp(epoch)}
+          />
+          <YAxis unit="kg" domain={['dataMin - 5', 'auto']} />
+          <Tooltip />
+          <Legend />
+          <Line
+            strokeWidth={2}
+            type="monotone"
+            dataKey="oneRepMax"
+            stroke={theme.palette.secondary.main}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+      {/* <VictoryChart
         animate={{ duration: 2000 }}
         minDomain={{ y: getMinDomain(plot.data) }}
         maxDomain={{ y: getMaxDomain(plot.data) }}
         scale={{ x: 'time' }}
+        containerComponent={
+          <VictoryVoronoiContainer
+            labels={({ datum }) => `one-rep-max: ${datum.oneRepMax} Kg`}
+          />
+        }
       >
         <VictoryAxis style={axisStyles} />
         <VictoryAxis style={axisStyles} dependentAxis />
@@ -64,8 +99,6 @@ const Chart = ({ plot, theme }) => {
           data={plot.data}
           y="oneRepMax"
           x={(data) => getDateFromEpochTimestamp(data.epoch)}
-          labels={({ datum }) => `${Math.round(datum.oneRepMax)}`}
-          labelComponent={<VictoryLabel renderInPortal dx={10} dy={-15} />}
         />
         <VictoryLegend
           gutter={20}
@@ -77,6 +110,7 @@ const Chart = ({ plot, theme }) => {
           ]}
         />
       </VictoryChart>
+      */}
     </Widget>
   );
 };
