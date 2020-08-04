@@ -19,7 +19,6 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "recharts": "^1.8.5",
-    "victory": "^35.0.5",
     "yup": "^0.29.1"
   },
   "scripts": {
