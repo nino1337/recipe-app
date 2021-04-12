@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1234567,
+    "routine": "WKM Plan A",
+    "exercises": [
+      {
+        "exercise": "Military-Press",
+        "sets": 3
+      },
+      {
+        "exercise": "Klimmzüge",
+        "sets": 3
+      },
+      {
+        "exercise": "Kreuzheben",
+        "sets": 3
+      }
+    ]
+  },
+  {
+    "id": 1234569,
+    "routine": "WKM Plan B",
+    "exercises": [
+      {
+        "exercise": "Bankdrücken",
+        "sets": 3
+      },
+      {
+        "exercise": "Langhantelrudern",
+        "sets": 3
+      },
+      {
+        "exercise": "Kniebeugen",
+        "sets": 3
+      }
+    ]
+  }
+]

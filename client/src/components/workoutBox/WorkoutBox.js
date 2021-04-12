@@ -23,8 +23,9 @@ const WorkoutBox = ({ workout }) => {
       <Typography gutterBottom className={classes.date}>
         {moment(workout.epoch).format('DD. MMMM YYYY')}
       </Typography>
-      <Typography variant="h5" gutterBottom>
-        {workout.programm}
+      <Typography variant="h3">{workout.routine}</Typography>
+      <Typography className={classes.duration} gutterBottom>
+        {moment(workout.duration).format('hh:mm:ss')}
       </Typography>
       {workout.exercises.map((item) => (
         <Grid container key={item.exercise}>
@@ -38,9 +39,9 @@ const WorkoutBox = ({ workout }) => {
               <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Set</TableCell>
-                    <TableCell>Weight</TableCell>
-                    <TableCell>Reps</TableCell>
+                    <TableCell>Satz</TableCell>
+                    <TableCell>Gewicht</TableCell>
+                    <TableCell>Wdh.</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

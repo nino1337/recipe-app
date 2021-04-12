@@ -5,6 +5,9 @@ export default makeStyles({
     fontWeight: 'bold',
   },
   date: {
-    fontSize: '12px',
+    fontSize: '1rem',
+  },
+  duration: {
+    fontSize: '1rem',
   },
 });

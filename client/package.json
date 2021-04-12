@@ -1,5 +1,5 @@
 {
-  "name": "training-app-frontend",
+  "name": "workout-app-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -10,6 +10,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
+    "cross-env": "^7.0.3",
     "express": "^4.17.1",
     "lodash": "^4.17.19",
     "moment": "^2.27.0",
@@ -22,6 +23,7 @@
     "yup": "^0.29.1"
   },
   "scripts": {
+    "start:mocks": "cross-env REACT_APP_MOCKS=true react-scripts start",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

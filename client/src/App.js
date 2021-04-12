@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 
 import Layout from './components/layout/Layout';
 import Loading from './components/loading/Loading';
@@ -8,7 +8,7 @@ import userService from './service/userService';
 
 function App() {
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(process.env.REACT_APP_MOCKS ? 'Nino' : null);
   const history = useHistory();
 
   useEffect(() => {
@@ -55,17 +55,9 @@ function App() {
   return (
     <Layout user={user}>
       <Switch>
-        {user ? (
-          <>
-            {userRoutes.map((route) => getRoute(route))}
-            <Redirect to={'/'} />
-          </>
-        ) : (
-          <>
-            {loginRegisterRoutes.map((route) => getRoute(route))}
-            <Redirect to={'/login'} />
-          </>
-        )}
+        {user
+          ? userRoutes.map((route) => getRoute(route))
+          : loginRegisterRoutes.map((route) => getRoute(route))}
       </Switch>
     </Layout>
   );

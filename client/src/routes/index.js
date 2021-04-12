@@ -3,7 +3,7 @@ import { TrendingUp, Web, FitnessCenter, AccountBox } from '@material-ui/icons';
 import Login from '../pages/login/Login';
 import Register from '../pages/register/Register';
 import Home from '../pages/home/Home';
-import Training from '../pages/training/Training';
+import Workout from '../pages/workout/Workout';
 import Progress from '../pages/progress/Progress';
 import Account from '../pages/account/Account';
 
@@ -22,7 +22,7 @@ export const userRoutes = [
   },
   {
     href: '/workout',
-    component: Training,
+    component: Workout,
     title: 'Workout',
     icon: FitnessCenter,
   },

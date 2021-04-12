@@ -1,7 +1,7 @@
 import React from 'react';
 import propTypes from 'prop-types';
 import { AppBar, Toolbar, Button, Typography } from '@material-ui/core';
-import { FitnessCenter, MenuSharp, MenuOpenSharp } from '@material-ui/icons';
+import { MenuSharp, MenuOpenSharp, FitnessCenter } from '@material-ui/icons';
 import { Link, useHistory } from 'react-router-dom';
 
 import styles from './styles';
@@ -12,7 +12,8 @@ const Header = ({ user, onBurgerClick, isDrawerOpen }) => {
   const history = useHistory();
   const currentPath = history.location.pathname;
   const getCurrentRouteTitle = () => {
-    return userRoutes.find((route) => currentPath === route.href).title;
+    const currentRoute = userRoutes.find((route) => currentPath === route.href);
+    return currentRoute && currentRoute.title;
   };
 
   const getMenuItem = () => {
