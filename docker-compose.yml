@@ -1,7 +1,7 @@
 version: '3'
 services:
   user_auth_service:
-    container_name: 'training-app-user-service'
+    container_name: 'workout-app-user-service'
     build: ./user-auth-service
     restart: always
     ports:
@@ -9,7 +9,7 @@ services:
     depends_on:
       - mongo
   workout_data_service:
-    container_name: 'training-app-workout-service'
+    container_name: 'workout-app-data-service'
     build: './workout-data-service'
     restart: always
     ports:
@@ -17,7 +17,7 @@ services:
     depends_on:
       - mongo
   client:
-    container_name: 'training-app-client'
+    container_name: 'workout-app-client'
     build: ./client
     ports:
       - '80:80'
@@ -25,6 +25,6 @@ services:
       - user_auth_service
   mongo:
     image: 'mongo'
-    container_name: 'training-app-mongo'
+    container_name: 'workout-app-mongo'
     ports:
       - '27017:27017'

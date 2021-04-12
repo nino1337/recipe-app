@@ -1,7 +1,7 @@
 {
-  "name": "training-app",
+  "name": "workout-app",
   "version": "1.0.0",
-  "description": "app to track your training progression",
+  "description": "app to track your workout progression",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nino1337/recipe-app.git"
