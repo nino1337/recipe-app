@@ -1,7 +1,9 @@
 import React from 'react';
-import { Grid, Typography, Box } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
+
 import propTypes from 'prop-types';
 
+import EditRoutine from './components/EditRoutine';
 import Widget from '../widget/Widget';
 import styles from './styles';
 
@@ -9,8 +11,18 @@ const RoutineBox = ({ routine }) => {
   const classes = styles();
 
   return (
-    <Widget dimensions={{ xs: 12, sm: 6, md: 4 }}>
-      <Typography variant="h4">{routine.routine}</Typography>
+    <Widget dimensions={{ xs: 12, sm: 6, md: 4 }} className={classes.root}>
+      <EditRoutine classes={classes} />
+      <Typography variant="h4" gutterBottom>
+        {routine.name}
+      </Typography>
+      <div>
+        {routine.exercises.map((exercise, index) => (
+          <Typography key={routine.id + index} className={classes.exercise}>
+            {exercise.sets}x {exercise.name}
+          </Typography>
+        ))}
+      </div>
     </Widget>
   );
 };

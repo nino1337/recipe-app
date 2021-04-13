@@ -42,7 +42,6 @@ const Home = () => {
 
   return (
     <article>
-      <Typography variant="h1">Übersicht</Typography>
       <Typography variant="h4">Meine letzten Workouts</Typography>
       <Box mt={2} mb={3}>
         <Grid container spacing={3}>

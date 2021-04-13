@@ -4,10 +4,10 @@ import propTypes from 'prop-types';
 
 import styles from './styles';
 
-const Widget = ({ children, dimensions }) => {
+const Widget = ({ children, dimensions, className }) => {
   const classes = styles();
   return (
-    <Grid item {...dimensions}>
+    <Grid item {...dimensions} className={className}>
       <Paper className={classes.paper}>{children}</Paper>
     </Grid>
   );
@@ -16,6 +16,7 @@ const Widget = ({ children, dimensions }) => {
 Widget.propTypes = {
   children: propTypes.array,
   dimensions: propTypes.object,
+  className: propTypes.object,
 };
 
 export default Widget;

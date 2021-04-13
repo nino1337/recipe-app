@@ -18,7 +18,11 @@ export default createMuiTheme({
       fontSize: '2.4rem',
     },
     h4: {
-      fontSize: '1.8rem',
+      fontSize: '1.6rem',
+    },
+    h5: {
+      fontSize: '0.8rem',
+      textTransform: 'uppercase',
     },
   },
   overrides: {},

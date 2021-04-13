@@ -3,6 +3,7 @@ import { Typography, Box, Grid, Button } from '@material-ui/core';
 
 import workoutService from '../../service/workoutService';
 import RoutineBox from '../../components/routineBox/RoutineBox';
+import AddRoutine from '../../components/addRoutine/AddRoutine';
 
 const Workout = () => {
   const [routines, setRoutines] = useState(null);
@@ -14,22 +15,24 @@ const Workout = () => {
       setRoutines(response.data);
     };
     fetchRoutinesData();
-  });
+  }, []);
 
   return (
     <article>
-      <Typography variant="h1">Workout</Typography>
-      <Box mb={3} mt={1}>
+      <Typography variant="h5" color="primary" gutterBottom>
+        Abgeschlossenes Workout hinzufügen
+      </Typography>
+      <Box mb={4} mt={2}>
         <Button variant="contained" color="primary">
-          Workout starten
+          Workout loggen
         </Button>
       </Box>
-      <Typography variant="h3" gutterBottom>
-        Meine Routinen
-      </Typography>
-      <Button variant="contained" color="primary">
-        Routine hinzufügen
-      </Button>
+      <Grid container alignItems="center">
+        <Typography variant="h5" color="primary">
+          Meine Routinen
+        </Typography>
+        <AddRoutine />
+      </Grid>
       <Box mt={2} mb={3}>
         <Grid container spacing={3}>
           {routines &&

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Langhantelrudern",
+    "image": "/mocks/workout/assets/langhantelrudern.png"
+  },
+  {
+    "name": "Bankdrücken",
+    "image": "/mocks/workout/assets/langhantelrudern.png"
+  },
+  {
+    "name": "Klimmzüge",
+    "image": "/mocks/workout/assets/langhantelrudern.png"
+  },
+  {
+    "name": "Kniebeuge",
+    "image": "/mocks/workout/assets/langhantelrudern.png"
+  },
+  {
+    "name": "Kreuzheben",
+    "image": "/mocks/workout/assets/langhantelrudern.png"
+  },
+  {
+    "name": "Military-Press",
+    "image": "/mocks/workout/assets/langhantelrudern.png"
+  },
+  {
+    "name": "Langhantel-Curls",
+    "image": "/mocks/workout/assets/langhantelrudern.png"
+  }
+]
