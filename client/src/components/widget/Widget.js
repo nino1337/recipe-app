@@ -16,7 +16,7 @@ const Widget = ({ children, dimensions, className }) => {
 Widget.propTypes = {
   children: propTypes.array,
   dimensions: propTypes.object,
-  className: propTypes.object,
+  className: propTypes.string,
 };
 
 export default Widget;

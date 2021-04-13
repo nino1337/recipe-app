@@ -23,7 +23,7 @@ const WorkoutBox = ({ workout }) => {
       <Typography gutterBottom className={classes.date}>
         {moment(workout.epoch).format('DD. MMMM YYYY')}
       </Typography>
-      <Typography variant="h3">{workout.routine}</Typography>
+      <Typography variant="h4">{workout.routine}</Typography>
       <Typography className={classes.duration} gutterBottom>
         {moment(workout.duration).format('hh:mm:ss')}
       </Typography>

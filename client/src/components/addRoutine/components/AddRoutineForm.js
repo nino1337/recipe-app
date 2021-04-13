@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { Button, Grid, Box } from '@material-ui/core';
+import { Button, Grid, Box, Typography } from '@material-ui/core';
 
 import AddExercises from './AddExercises';
 
@@ -18,8 +18,8 @@ const AddRoutineForm = ({ onAbortButtonClick }) => {
         </Grid>
       )}
       <Grid item container xs={12} justify="center">
-        <Button color="secondary" onClick={onAbortButtonClick}>
-          Abbrechen
+        <Button onClick={onAbortButtonClick}>
+          <Typography color="error">Abbrechen</Typography>
         </Button>
       </Grid>
     </Grid>

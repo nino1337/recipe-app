@@ -42,7 +42,7 @@ const Home = () => {
 
   return (
     <article>
-      <Typography variant="h4">Meine letzten Workouts</Typography>
+      <Typography variant="h5">Meine letzten Workouts</Typography>
       <Box mt={2} mb={3}>
         <Grid container spacing={3}>
           {workouts.loading && <Loading />}
