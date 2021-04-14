@@ -12,6 +12,7 @@ export default makeStyles((theme) => ({
     width: 300,
     maxHeight: 300,
     overflow: 'auto',
+    margin: '0 auto 0.6rem',
   },
   exerciseListItem: {
     cursor: 'pointer',

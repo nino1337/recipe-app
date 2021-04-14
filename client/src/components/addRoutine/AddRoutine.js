@@ -15,8 +15,8 @@ const AddRoutine = () => {
   return (
     <>
       <Tooltip title="Routine hinzufügen">
-        <IconButton size="small">
-          <Add color="secondary" onClick={() => setIsOpenModal(true)} />
+        <IconButton size="small" onClick={() => setIsOpenModal(true)}>
+          <Add color="secondary" />
         </IconButton>
       </Tooltip>
       <Modal isOpen={isOpenModal}>

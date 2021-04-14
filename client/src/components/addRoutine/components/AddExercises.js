@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import propTypes from 'prop-types';
 import {
   Button,
@@ -19,7 +19,7 @@ import Popover from '../../popover/Popover';
 import workoutService from '../../../service/workoutService';
 import styles from './styles';
 
-const AddExercises = ({ onSelectExercises, addedExercises = [] }) => {
+const AddExercises = ({ onSelectExercises }) => {
   const [fetchedExercises, setFetchedExercises] = useState(false);
   const [selectedExercises, setSelectedExercises] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
@@ -38,6 +38,11 @@ const AddExercises = ({ onSelectExercises, addedExercises = [] }) => {
 
   const handlePopupButtonClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+
+  const handleClosePopup = () => {
+    setSelectedExercises([]);
+    setAnchorEl(null);
   };
 
   const isSelectedListItem = (exerciseName) => {
@@ -61,6 +66,11 @@ const AddExercises = ({ onSelectExercises, addedExercises = [] }) => {
     }
   };
 
+  const handleAddExerciseClick = () => {
+    setAnchorEl(null);
+    onSelectExercises(selectedExercises);
+  };
+
   return (
     <Grid item container xs={12} justify="center">
       <Box mb={2}>
@@ -73,12 +83,11 @@ const AddExercises = ({ onSelectExercises, addedExercises = [] }) => {
         </Button>
       </Box>
       {fetchedExercises && (
-        <Popover isOpen={isOpen} anchorEl={anchorEl}>
+        <Popover isOpen={isOpen} anchorEl={anchorEl} onClose={handleClosePopup}>
           <List className={classes.exerciseList}>
             {fetchedExercises.map((exercise) => (
-              <>
+              <Fragment key={exercise.name}>
                 <ListItem
-                  key={exercise.name}
                   className={`${classes.exerciseListItem} ${
                     isSelectedListItem(exercise.name) &&
                     classes.exerciseListItemActive
@@ -103,18 +112,18 @@ const AddExercises = ({ onSelectExercises, addedExercises = [] }) => {
                   />
                 </ListItem>
                 <Divider />
-              </>
+              </Fragment>
             ))}
           </List>
           {selectedExercises.length >= 1 && (
             <Paper className={classes.controls}>
               <Tooltip title="Abbrechen">
-                <IconButton>
+                <IconButton onClick={handleClosePopup}>
                   <Close color="error" />
                 </IconButton>
               </Tooltip>
               <Tooltip title="Übungen hinzufügen">
-                <IconButton>
+                <IconButton onClick={handleAddExerciseClick}>
                   <DoneAll color="secondary" />
                 </IconButton>
               </Tooltip>
@@ -128,7 +137,6 @@ const AddExercises = ({ onSelectExercises, addedExercises = [] }) => {
 
 AddExercises.propTypes = {
   onSelectExercises: propTypes.func,
-  addedExercises: propTypes.array,
 };
 
 export default AddExercises;
