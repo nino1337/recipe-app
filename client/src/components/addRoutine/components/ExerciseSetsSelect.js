@@ -2,7 +2,7 @@ import React from 'react';
 import { FormControl, Select, InputLabel, MenuItem } from '@material-ui/core';
 import propTypes from 'prop-types';
 
-const ExerciseSetsSelect = ({ onSetsSelect, sets }) => {
+const ExerciseSetsSelect = ({ onSetsSelect, sets = 3 }) => {
   return (
     <FormControl>
       <InputLabel id="exercise-sets-select-label-id">Sätze</InputLabel>
@@ -11,7 +11,6 @@ const ExerciseSetsSelect = ({ onSetsSelect, sets }) => {
         id="exercise-sets-select"
         value={sets}
         onChange={onSetsSelect}
-        defaultValue={3}
       >
         <MenuItem value={1}>1</MenuItem>
         <MenuItem value={2}>2</MenuItem>

@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Add } from '@material-ui/icons';
 import { IconButton, Tooltip } from '@material-ui/core';
+import propTypes from 'prop-types';
 
 import AddRoutineForm from './components/AddRoutineForm';
 import Modal from '../modal/Modal';
 
-const AddRoutine = () => {
+const AddRoutine = ({ onAddRoutine }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleClose = () => {
@@ -20,10 +21,17 @@ const AddRoutine = () => {
         </IconButton>
       </Tooltip>
       <Modal isOpen={isOpenModal}>
-        <AddRoutineForm onAbortButtonClick={handleClose} />
+        <AddRoutineForm
+          onAbortButtonClick={handleClose}
+          onAddRoutine={onAddRoutine}
+        />
       </Modal>
     </>
   );
+};
+
+AddRoutine.propTypes = {
+  onAddRoutine: propTypes.func,
 };
 
 export default AddRoutine;

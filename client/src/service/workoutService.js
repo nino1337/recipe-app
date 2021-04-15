@@ -30,6 +30,24 @@ export default {
       };
     }
   },
+  addRoutine: async (routine) => {
+    try {
+      const response = await workoutDataApiInstance.post('routines', routine);
+      let errorMessage;
+
+      if (response.status === 400) {
+        errorMessage =
+          'Routine konnte nicht angelegt werden. Versuche es bitte erneut!';
+      }
+
+      return { response, errorMessage };
+    } catch (error) {
+      return {
+        errorMessage:
+          'Routine konnte nicht angelegt werden. Versuche es bitte erneut!',
+      };
+    }
+  },
   getExercises: async () => {
     try {
       const apiRoute = getApiRoute('exercises', 'workout/exercises.json');

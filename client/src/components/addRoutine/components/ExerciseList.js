@@ -16,7 +16,7 @@ const ExerciseList = ({ exercises, onSetsSelect }) => {
 
   return (
     <List className={classes.exerciseList}>
-      {exercises.map((exercise) => (
+      {exercises.map((exercise, index) => (
         <Fragment key={exercise.name}>
           <ListItem className={classes.exerciseListItem}>
             <ListItemAvatar>
@@ -32,7 +32,7 @@ const ExerciseList = ({ exercises, onSetsSelect }) => {
               sets={exercise.sets}
             />
           </ListItem>
-          <Divider />
+          {index < exercises.length - 1 && <Divider />}
         </Fragment>
       ))}
     </List>

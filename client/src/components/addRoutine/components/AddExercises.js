@@ -92,7 +92,6 @@ const AddExercises = ({ onSelectExercises }) => {
                     isSelectedListItem(exercise.name) &&
                     classes.exerciseListItemActive
                   }`}
-                  isSelected={isSelectedListItem(exercise.name)}
                   onClick={() => onListItemClick(exercise)}
                 >
                   <ListItemAvatar>

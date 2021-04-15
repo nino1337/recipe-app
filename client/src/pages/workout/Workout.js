@@ -17,6 +17,10 @@ const Workout = () => {
     fetchRoutinesData();
   }, []);
 
+  const onAddRoutine = (newRoutine) => {
+    setRoutines((prevRoutines) => [...prevRoutines, newRoutine]);
+  };
+
   return (
     <article>
       <Typography variant="h5" color="primary" gutterBottom>
@@ -31,13 +35,13 @@ const Workout = () => {
         <Typography variant="h5" color="primary">
           Meine Routinen
         </Typography>
-        <AddRoutine />
+        <AddRoutine onAddRoutine={onAddRoutine} />
       </Grid>
       <Box mt={2} mb={3}>
         <Grid container spacing={3}>
           {routines &&
             routines.map((routine) => (
-              <RoutineBox key={routine.id} routine={routine} />
+              <RoutineBox key={routine.name} routine={routine} />
             ))}
         </Grid>
       </Box>

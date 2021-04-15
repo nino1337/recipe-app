@@ -18,7 +18,7 @@ const RoutineBox = ({ routine }) => {
       </Typography>
       <div>
         {routine.exercises.map((exercise, index) => (
-          <Typography key={routine.id + index} className={classes.exercise}>
+          <Typography key={routine.name + index} className={classes.exercise}>
             {exercise.sets}x {exercise.name}
           </Typography>
         ))}
