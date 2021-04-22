@@ -6,7 +6,10 @@ import ExerciseList from './ExerciseList';
 import AddExercises from './AddExercises';
 import workoutService from '../../../service/workoutService';
 
-const AddRoutineForm = ({ onAbortButtonClick, onAddRoutine }) => {
+import useContext from '../../../hooks/useContext';
+
+const AddRoutineForm = ({ onAbortButtonClick }) => {
+  const setContext = useContext()[1];
   const [exercises, setExercises] = useState(null);
   const [routineName, setRoutineName] = useState('');
 
@@ -16,7 +19,7 @@ const AddRoutineForm = ({ onAbortButtonClick, onAddRoutine }) => {
   const isNotRemovedExercise = (exerciseName, selectedExercises) =>
     selectedExercises.find((exercise) => exercise.name === exerciseName);
 
-  const onSelectExercises = (selectedExercises) => {
+  const handleSelectExercises = (selectedExercises) => {
     if (exercises) {
       setExercises((prevExercises) => {
         // remove already selected exercises from the list
@@ -36,7 +39,7 @@ const AddRoutineForm = ({ onAbortButtonClick, onAddRoutine }) => {
     }
   };
 
-  const onSetsSelect = (event, exerciseName) => {
+  const handleSelectSets = (event, exerciseName) => {
     const { value } = event.target;
     setExercises((prevExercises) => {
       const updatedExercises = prevExercises.map((prevExercise) => {
@@ -57,19 +60,23 @@ const AddRoutineForm = ({ onAbortButtonClick, onAddRoutine }) => {
 
   const addRoutine = async () => {
     const mappedExercises = exercises.map((exercise) => ({
-      ...exercise,
+      id: exercise.id,
       sets: exercise.sets || 3,
     }));
     const routine = {
       name: routineName,
       exercises: mappedExercises,
     };
+
     const { errorMessage } = await workoutService.addRoutine(routine);
 
     if (errorMessage) {
       console.log(errorMessage);
     } else {
-      onAddRoutine(routine);
+      setContext((prevContext) => ({
+        ...prevContext,
+        routines: [...prevContext.routines, routine],
+      }));
       onAbortButtonClick(); // close modal
     }
   };
@@ -77,15 +84,15 @@ const AddRoutineForm = ({ onAbortButtonClick, onAddRoutine }) => {
   return (
     <Grid container>
       <Box mb={3}>
-        <TextField label="Name*" onChange={handleRoutineNameChange} />
+        <TextField label="Routinen-Name*" onChange={handleRoutineNameChange} />
       </Box>
       <AddExercises
-        onSelectExercises={onSelectExercises}
+        onSelectExercises={handleSelectExercises}
         addedExercises={exercises}
       />
       {exercises && (
         <>
-          <ExerciseList onSetsSelect={onSetsSelect} exercises={exercises} />
+          <ExerciseList onSetsSelect={handleSelectSets} exercises={exercises} />
           <Grid item container xs={12} justify="center">
             <Box mb={2}>
               <Button

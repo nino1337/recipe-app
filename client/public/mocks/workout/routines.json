@@ -4,15 +4,15 @@
     "name": "WKM Plan A",
     "exercises": [
       {
-        "name": "Military-Press",
+        "id": 6,
         "sets": 3
       },
       {
-        "name": "Klimmzüge",
+        "id": 3,
         "sets": 3
       },
       {
-        "name": "Kreuzheben",
+        "id": 5,
         "sets": 3
       }
     ]
@@ -22,15 +22,15 @@
     "name": "WKM Plan B",
     "exercises": [
       {
-        "name": "Bankdrücken",
+        "id": 2,
         "sets": 3
       },
       {
-        "name": "Langhantelrudern",
+        "id": 1,
         "sets": 3
       },
       {
-        "name": "Kniebeugen",
+        "id": 4,
         "sets": 3
       }
     ]

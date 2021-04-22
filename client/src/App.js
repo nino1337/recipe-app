@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, Redirect } from 'react-router-dom';
 
 import Layout from './components/layout/Layout';
 import Loading from './components/loading/Loading';
@@ -58,6 +58,7 @@ function App() {
         {user
           ? userRoutes.map((route) => getRoute(route))
           : loginRegisterRoutes.map((route) => getRoute(route))}
+        <Redirect to={user ? '/uebersicht' : '/login'} />
       </Switch>
     </Layout>
   );

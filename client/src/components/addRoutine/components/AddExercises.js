@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import propTypes from 'prop-types';
 import {
   Button,
@@ -16,25 +16,16 @@ import {
 import { Check, DoneAll, Close } from '@material-ui/icons';
 
 import Popover from '../../popover/Popover';
-import workoutService from '../../../service/workoutService';
 import styles from './styles';
 
+import useContext from '../../../hooks/useContext';
+
 const AddExercises = ({ onSelectExercises }) => {
-  const [fetchedExercises, setFetchedExercises] = useState(false);
+  const context = useContext()[0];
   const [selectedExercises, setSelectedExercises] = useState([]);
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
   const classes = styles();
-
-  useEffect(() => {
-    const fetchExercises = async () => {
-      const { response } = await workoutService.getExercises();
-
-      setFetchedExercises(response.data);
-    };
-
-    fetchExercises();
-  }, []);
 
   const handlePopupButtonClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -51,7 +42,7 @@ const AddExercises = ({ onSelectExercises }) => {
     );
   };
 
-  const onListItemClick = (exercise) => {
+  const handleListItemClick = (exercise) => {
     if (isSelectedListItem(exercise.name)) {
       setSelectedExercises((prevSelectedExercises) =>
         prevSelectedExercises.filter(
@@ -66,7 +57,7 @@ const AddExercises = ({ onSelectExercises }) => {
     }
   };
 
-  const handleAddExerciseClick = () => {
+  const handleAddExercise = () => {
     setAnchorEl(null);
     onSelectExercises(selectedExercises);
   };
@@ -82,54 +73,52 @@ const AddExercises = ({ onSelectExercises }) => {
           Übungen hinzufügen
         </Button>
       </Box>
-      {fetchedExercises && (
-        <Popover isOpen={isOpen} anchorEl={anchorEl} onClose={handleClosePopup}>
-          <List className={classes.exerciseList}>
-            {fetchedExercises.map((exercise) => (
-              <Fragment key={exercise.name}>
-                <ListItem
-                  className={`${classes.exerciseListItem} ${
-                    isSelectedListItem(exercise.name) &&
-                    classes.exerciseListItemActive
-                  }`}
-                  onClick={() => onListItemClick(exercise)}
-                >
-                  <ListItemAvatar>
-                    <img
-                      className={classes.exerciseImage}
-                      src={exercise.image}
-                      alt={exercise.name}
-                    />
-                  </ListItemAvatar>
-                  <ListItemText>{exercise.name}</ListItemText>
-                  <Check
-                    color="secondary"
-                    className={`${classes.exerciseCheck} ${
-                      isSelectedListItem(exercise.name) &&
-                      classes.exerciseCheckActive
-                    }`}
+      <Popover isOpen={isOpen} anchorEl={anchorEl} onClose={handleClosePopup}>
+        <List className={classes.exerciseList}>
+          {context.exercises.map((exercise) => (
+            <Fragment key={exercise.name}>
+              <ListItem
+                className={`${classes.exerciseListItem} ${
+                  isSelectedListItem(exercise.name) &&
+                  classes.exerciseListItemActive
+                }`}
+                onClick={() => handleListItemClick(exercise)}
+              >
+                <ListItemAvatar>
+                  <img
+                    className={classes.exerciseImage}
+                    src={exercise.image}
+                    alt={exercise.name}
                   />
-                </ListItem>
-                <Divider />
-              </Fragment>
-            ))}
-          </List>
-          {selectedExercises.length >= 1 && (
-            <Paper className={classes.controls}>
-              <Tooltip title="Abbrechen">
-                <IconButton onClick={handleClosePopup}>
-                  <Close color="error" />
-                </IconButton>
-              </Tooltip>
-              <Tooltip title="Übungen hinzufügen">
-                <IconButton onClick={handleAddExerciseClick}>
-                  <DoneAll color="secondary" />
-                </IconButton>
-              </Tooltip>
-            </Paper>
-          )}
-        </Popover>
-      )}
+                </ListItemAvatar>
+                <ListItemText>{exercise.name}</ListItemText>
+                <Check
+                  color="secondary"
+                  className={`${classes.exerciseCheck} ${
+                    isSelectedListItem(exercise.name) &&
+                    classes.exerciseCheckActive
+                  }`}
+                />
+              </ListItem>
+              <Divider />
+            </Fragment>
+          ))}
+        </List>
+        {selectedExercises.length >= 1 && (
+          <Paper className={classes.controls}>
+            <Tooltip title="Abbrechen">
+              <IconButton onClick={handleClosePopup}>
+                <Close color="error" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Übungen hinzufügen">
+              <IconButton onClick={handleAddExercise}>
+                <DoneAll color="secondary" />
+              </IconButton>
+            </Tooltip>
+          </Paper>
+        )}
+      </Popover>
     </Grid>
   );
 };

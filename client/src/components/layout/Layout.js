@@ -1,12 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import propTypes from 'prop-types';
 
 import Content from './components/content/Content';
 import Drawer from './components/drawer/Drawer';
 import Header from './components/header/Header';
 
+import AppContext, { defaultContext } from '../../appContext';
+import workoutService from '../../service/workoutService';
+
 const Layout = ({ children, user }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [context, setContext] = useState(defaultContext);
 
   const onLinkClick = () => {
     setIsDrawerOpen(false);
@@ -15,6 +19,22 @@ const Layout = ({ children, user }) => {
   const onBurgerClick = () => {
     setIsDrawerOpen((prevState) => !prevState);
   };
+
+  useEffect(() => {
+    const fetchContext = async () => {
+      const { response: exercises } = await workoutService.getExercises();
+      const { response: routines } = await workoutService.getRoutines();
+      const { response: workouts } = await workoutService.getWorkouts();
+
+      setContext({
+        routines: routines.data,
+        exercises: exercises.data,
+        workouts: workouts.data,
+      });
+    };
+
+    fetchContext();
+  }, []);
 
   return (
     <>
@@ -26,7 +46,9 @@ const Layout = ({ children, user }) => {
       {user && (
         <Drawer user={user} isOpen={isDrawerOpen} onLinkClick={onLinkClick} />
       )}
-      <Content>{children}</Content>
+      <AppContext.Provider value={[context, setContext]}>
+        {context.exercises && context.routines && <Content>{children}</Content>}
+      </AppContext.Provider>
     </>
   );
 };

@@ -1,30 +1,37 @@
 [
   {
+    "id": 1,
     "name": "Langhantelrudern",
     "image": "/mocks/workout/assets/langhantelrudern.png"
   },
   {
+    "id": 2,
     "name": "Bankdrücken",
-    "image": "/mocks/workout/assets/langhantelrudern.png"
+    "image": "/mocks/workout/assets/bankdruecken.png"
   },
   {
+    "id": 3,
     "name": "Klimmzüge",
-    "image": "/mocks/workout/assets/langhantelrudern.png"
+    "image": "/mocks/workout/assets/kz.png"
   },
   {
+    "id": 4,
     "name": "Kniebeuge",
-    "image": "/mocks/workout/assets/langhantelrudern.png"
+    "image": "/mocks/workout/assets/kniebeugen.png"
   },
   {
+    "id": 5,
     "name": "Kreuzheben",
-    "image": "/mocks/workout/assets/langhantelrudern.png"
+    "image": "/mocks/workout/assets/kreuzheben.png"
   },
   {
+    "id": 6,
     "name": "Military-Press",
-    "image": "/mocks/workout/assets/langhantelrudern.png"
+    "image": "/mocks/workout/assets/mp.png"
   },
   {
+    "id": 7,
     "name": "Langhantel-Curls",
-    "image": "/mocks/workout/assets/langhantelrudern.png"
+    "image": "/mocks/workout/assets/lh-curls.png"
   }
 ]

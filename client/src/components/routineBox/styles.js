@@ -7,8 +7,15 @@ export default makeStyles({
   exercise: {
     fontStyle: 'italic',
     lineHeight: '2',
+    display: 'flex',
+    alignItems: 'center',
+    marginBottom: 8,
+    '& img': {
+      maxWidth: 50,
+      marginRight: 8,
+    },
   },
-  edit: {
+  delete: {
     cursor: 'pointer',
     position: 'absolute',
     right: 24,

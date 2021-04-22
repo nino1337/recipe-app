@@ -48,6 +48,42 @@ export default {
       };
     }
   },
+  editRoutine: async (routine) => {
+    try {
+      const response = await workoutDataApiInstance.put('routines', routine);
+      let errorMessage;
+
+      if (response.status === 400) {
+        errorMessage =
+          'Routine konnte nicht bearbeitet werden. Versuche es bitte erneut!';
+      }
+
+      return { response, errorMessage };
+    } catch (error) {
+      return {
+        errorMessage:
+          'Routine konnte nicht bearbeitet werden. Versuche es bitte erneut!',
+      };
+    }
+  },
+  deleteRoutine: async (routine) => {
+    try {
+      const response = await workoutDataApiInstance.delete('routines', routine);
+      let errorMessage;
+
+      if (response.status === 400) {
+        errorMessage =
+          'Routine konnte nicht gelöscht werden. Versuche es bitte erneut!';
+      }
+
+      return { response, errorMessage };
+    } catch (error) {
+      return {
+        errorMessage:
+          'Routine konnte nicht gelöscht werden. Versuche es bitte erneut!',
+      };
+    }
+  },
   getExercises: async () => {
     try {
       const apiRoute = getApiRoute('exercises', 'workout/exercises.json');

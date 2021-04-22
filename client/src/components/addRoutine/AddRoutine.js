@@ -6,10 +6,10 @@ import propTypes from 'prop-types';
 import AddRoutineForm from './components/AddRoutineForm';
 import Modal from '../modal/Modal';
 
-const AddRoutine = ({ onAddRoutine }) => {
+const AddRoutine = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const handleClose = () => {
+  const handleModalClose = () => {
     setIsOpenModal(false);
   };
 
@@ -21,10 +21,7 @@ const AddRoutine = ({ onAddRoutine }) => {
         </IconButton>
       </Tooltip>
       <Modal isOpen={isOpenModal}>
-        <AddRoutineForm
-          onAbortButtonClick={handleClose}
-          onAddRoutine={onAddRoutine}
-        />
+        <AddRoutineForm onAbortButtonClick={handleModalClose} />
       </Modal>
     </>
   );

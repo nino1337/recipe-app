@@ -1,25 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Typography, Box, Grid, Button } from '@material-ui/core';
 
-import workoutService from '../../service/workoutService';
 import RoutineBox from '../../components/routineBox/RoutineBox';
 import AddRoutine from '../../components/addRoutine/AddRoutine';
 
+import useContext from '../../hooks/useContext';
+
 const Workout = () => {
-  const [routines, setRoutines] = useState(null);
-
-  useEffect(() => {
-    const fetchRoutinesData = async () => {
-      const { response, errorMessage } = await workoutService.getRoutines();
-
-      setRoutines(response.data);
-    };
-    fetchRoutinesData();
-  }, []);
-
-  const onAddRoutine = (newRoutine) => {
-    setRoutines((prevRoutines) => [...prevRoutines, newRoutine]);
-  };
+  const context = useContext()[0];
 
   return (
     <article>
@@ -35,14 +23,13 @@ const Workout = () => {
         <Typography variant="h5" color="primary">
           Meine Routinen
         </Typography>
-        <AddRoutine onAddRoutine={onAddRoutine} />
+        <AddRoutine />
       </Grid>
       <Box mt={2} mb={3}>
         <Grid container spacing={3}>
-          {routines &&
-            routines.map((routine) => (
-              <RoutineBox key={routine.name} routine={routine} />
-            ))}
+          {context.routines.map((routine) => (
+            <RoutineBox key={routine.name} routine={routine} />
+          ))}
         </Grid>
       </Box>
     </article>

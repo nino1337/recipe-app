@@ -9,7 +9,7 @@ import Account from '../pages/account/Account';
 
 export const userRoutes = [
   {
-    href: '/',
+    href: '/uebersicht',
     component: Home,
     title: 'Übersicht',
     icon: Web,
