@@ -66,7 +66,7 @@ const AddExercises = ({ onSelectExercises }) => {
     <Grid item container xs={12} justify="center">
       <Box mb={2}>
         <Button
-          color="primary"
+          color="secondary"
           variant="contained"
           onClick={handlePopupButtonClick}
         >

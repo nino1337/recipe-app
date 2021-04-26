@@ -1,6 +1,7 @@
 import React from 'react';
-import { Typography, Box, Grid, Button } from '@material-ui/core';
+import { Typography, Box, Grid } from '@material-ui/core';
 
+import LogWorkout from '../../components/logWorkout/LogWorkout';
 import RoutineBox from '../../components/routineBox/RoutineBox';
 import AddRoutine from '../../components/addRoutine/AddRoutine';
 
@@ -14,11 +15,7 @@ const Workout = () => {
       <Typography variant="h5" color="primary" gutterBottom>
         Abgeschlossenes Workout hinzufügen
       </Typography>
-      <Box mb={4} mt={2}>
-        <Button variant="contained" color="primary">
-          Workout loggen
-        </Button>
-      </Box>
+      <LogWorkout />
       <Grid container alignItems="center">
         <Typography variant="h5" color="primary">
           Meine Routinen

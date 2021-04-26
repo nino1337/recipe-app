@@ -17,6 +17,18 @@ export default {
       };
     }
   },
+  addWorkout: async (workout) => {
+    try {
+      const response = await workoutDataApiInstance.post('workouts', workout);
+
+      return { response };
+    } catch (error) {
+      return {
+        errorMessage:
+          'Speichern des Workouts fehlgeschlagen. Versuche es bitte erneut!',
+      };
+    }
+  },
   getRoutines: async () => {
     try {
       const apiRoute = getApiRoute('routines', 'workout/routines.json');

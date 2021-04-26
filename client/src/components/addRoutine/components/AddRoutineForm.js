@@ -96,7 +96,7 @@ const AddRoutineForm = ({ onAbortButtonClick }) => {
           <Grid item container xs={12} justify="center">
             <Box mb={2}>
               <Button
-                color="secondary"
+                color="primary"
                 variant="contained"
                 onClick={addRoutine}
                 disabled={!(exercises.length && routineName)}
