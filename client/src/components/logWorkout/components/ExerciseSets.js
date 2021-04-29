@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import propTypes from 'prop-types';
 import {
   FormControl,
   InputLabel,
@@ -12,7 +13,7 @@ import useContext from '../../../hooks/useContext';
 import styles from './styles';
 import LogTable from './LogTable';
 
-const ExerciseSets = () => {
+const ExerciseSets = ({ onInputChange, onRoutineSelect }) => {
   const [selectedRoutine, setSelectedRoutine] = useState(null);
   const [routineExercises, setRoutineExercises] = useState(null);
   const { routines, exercises } = useContext()[0];
@@ -40,14 +41,20 @@ const ExerciseSets = () => {
 
     return (
       <>
-        <Typography variant="h5">{exercise.name}</Typography>
-        <LogTable sets={routineExercise.sets} />
+        <Typography variant="h4">{exercise.name}</Typography>
+        <LogTable
+          sets={routineExercise.sets}
+          onInputChange={(value, inputType) =>
+            onInputChange(value, inputType, exercise.name)
+          }
+        />
       </>
     );
   };
 
   useEffect(() => {
     if (selectedRoutine) {
+      onRoutineSelect(selectedRoutine);
       setRoutineExercises(selectedRoutine.exercises);
     }
   }, [selectedRoutine]);
@@ -72,6 +79,11 @@ const ExerciseSets = () => {
       </Grid>
     </>
   );
+};
+
+ExerciseSets.propTypes = {
+  onInputChange: propTypes.func,
+  onRoutineSelect: propTypes.func,
 };
 
 export default ExerciseSets;

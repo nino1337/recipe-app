@@ -9,7 +9,9 @@ export default makeStyles({
   modalContent: {
     backgroundColor: '#ffffff',
     width: '100%',
-    maxWidth: 400,
+    maxWidth: 600,
+    maxHeight: '80vh',
     padding: '1.6rem',
+    overflow: 'auto',
   },
 });

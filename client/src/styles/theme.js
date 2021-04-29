@@ -13,13 +13,13 @@ export default createMuiTheme({
   typography: {
     h1: {
       fontWeight: 'bold',
-      fontSize: '3.2rem',
+      fontSize: '3.4rem',
     },
     h3: {
-      fontSize: '2.4rem',
+      fontSize: '2rem',
     },
     h4: {
-      fontSize: '1.6rem',
+      fontSize: '1.2rem',
     },
     h5: {
       fontSize: '0.8rem',

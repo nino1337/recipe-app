@@ -6,16 +6,36 @@ import ExerciseSets from './ExerciseSets';
 import workoutService from '../../../service/workoutService';
 
 const LogWorkoutForm = ({ onAbortButtonClick }) => {
-  const [workoutData, setWorkoutData] = useState(null);
+  const [workoutData, setWorkoutData] = useState({
+    routine: null,
+    epoch: null,
+    exercises: [],
+  });
 
   const handleSaveLog = async () => {
     const { errorMessage } = await workoutService.addWorkout(workoutData);
   };
 
+  const handleInputChange = (value, inputType, exerciseName) => {
+    console.log({ value }, { inputType }, { exerciseName });
+  };
+
+  const handleRoutineSelect = (routine) => {
+    setWorkoutData((prevWorkoutData) => ({
+      ...prevWorkoutData,
+      routine: routine.name,
+    }));
+  };
+
+  console.log(workoutData);
+
   return (
     <Grid container>
       <Grid item container xs={12} justify="center">
-        <ExerciseSets />
+        <ExerciseSets
+          onInputChange={handleInputChange}
+          onRoutineSelect={handleRoutineSelect}
+        />
       </Grid>
       <Grid item container xs={12} justify="center">
         <Box mb={2}>
