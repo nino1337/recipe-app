@@ -7,10 +7,11 @@ export default makeStyles({
     alignItems: 'center',
   },
   modalContent: {
+    transform: 'translateY(32px)',
     backgroundColor: '#ffffff',
     width: '100%',
-    maxWidth: 600,
-    maxHeight: '80vh',
+    maxWidth: 400,
+    maxHeight: '70vh',
     padding: '1.6rem',
     overflow: 'auto',
   },

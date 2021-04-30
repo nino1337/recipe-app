@@ -7,8 +7,7 @@ import workoutService from '../../../service/workoutService';
 
 const LogWorkoutForm = ({ onAbortButtonClick }) => {
   const [workoutData, setWorkoutData] = useState({
-    routine: null,
-    epoch: null,
+    routineId: null,
     exercises: [],
   });
 
@@ -16,18 +15,64 @@ const LogWorkoutForm = ({ onAbortButtonClick }) => {
     const { errorMessage } = await workoutService.addWorkout(workoutData);
   };
 
-  const handleInputChange = (value, inputType, exerciseName) => {
-    console.log({ value }, { inputType }, { exerciseName });
+  const handleInputChange = (value, set, inputType, exerciseId) => {
+    const valueAsNumber = Number(value);
+
+    setWorkoutData((prevWorkoutData) => {
+      const updatedWorkoutData = prevWorkoutData.exercises.map((exercise) => {
+        if (exercise.id === exerciseId) {
+          const updatedExerciseWorkload = exercise.workload.map(
+            (workload, index) => {
+              if (index === set) {
+                return {
+                  ...workload,
+                  [inputType]: valueAsNumber,
+                };
+              }
+
+              return workload;
+            },
+          );
+
+          return {
+            ...exercise,
+            workload: updatedExerciseWorkload,
+          };
+        }
+
+        return exercise;
+      });
+
+      return {
+        ...prevWorkoutData,
+        exercises: [...updatedWorkoutData],
+      };
+    });
   };
 
   const handleRoutineSelect = (routine) => {
-    setWorkoutData((prevWorkoutData) => ({
-      ...prevWorkoutData,
-      routine: routine.name,
-    }));
-  };
+    if (!routine) return;
 
-  console.log(workoutData);
+    const mappedExercises = routine.exercises.map((exercise) => {
+      const workloadEntry = {
+        weight: 0,
+        reps: 0,
+      };
+      const workload = Array.from(
+        Array(exercise.sets).fill(workloadEntry, 0, exercise.sets.length),
+      );
+
+      return {
+        id: exercise.id,
+        workload,
+      };
+    });
+
+    setWorkoutData({
+      routineId: routine.id,
+      exercises: mappedExercises,
+    });
+  };
 
   return (
     <Grid container>

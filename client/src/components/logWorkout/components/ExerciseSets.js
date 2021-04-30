@@ -25,7 +25,7 @@ const ExerciseSets = ({ onInputChange, onRoutineSelect }) => {
       (routineParam) => routineParam.name === value,
     );
 
-    setSelectedRoutine(routine);
+    setSelectedRoutine(routine || null);
   };
 
   const getRoutineSelectItems = () => {
@@ -44,8 +44,8 @@ const ExerciseSets = ({ onInputChange, onRoutineSelect }) => {
         <Typography variant="h4">{exercise.name}</Typography>
         <LogTable
           sets={routineExercise.sets}
-          onInputChange={(value, inputType) =>
-            onInputChange(value, inputType, exercise.name)
+          onInputChange={(value, set, inputType) =>
+            onInputChange(value, set, inputType, exercise.id)
           }
         />
       </>
@@ -53,7 +53,7 @@ const ExerciseSets = ({ onInputChange, onRoutineSelect }) => {
   };
 
   useEffect(() => {
-    if (selectedRoutine) {
+    if (selectedRoutine && selectedRoutine.exercises) {
       onRoutineSelect(selectedRoutine);
       setRoutineExercises(selectedRoutine.exercises);
     }

@@ -7,9 +7,10 @@ export default makeStyles({
     marginBottom: 24,
   },
   textField: {
-    width: 100,
+    width: '100%',
+    maxWidth: 80,
     '& input': {
-      padding: '12px 10px',
+      padding: '6px',
     },
   },
   logTable: {

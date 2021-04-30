@@ -43,8 +43,9 @@ const LogTable = ({ sets, onInputChange }) => {
                   className={classes.textField}
                   variant="filled"
                   onChange={(event) =>
-                    onInputChange(event.target.value, 'weight')
+                    onInputChange(event.target.value, set, 'weight')
                   }
+                  type="number"
                 />
               </TableCell>
               <TableCell>
@@ -52,8 +53,9 @@ const LogTable = ({ sets, onInputChange }) => {
                   className={classes.textField}
                   variant="filled"
                   onChange={(event) =>
-                    onInputChange(event.target.value, 'reps')
+                    onInputChange(event.target.value, set, 'reps')
                   }
+                  type="number"
                 />
               </TableCell>
             </TableRow>
