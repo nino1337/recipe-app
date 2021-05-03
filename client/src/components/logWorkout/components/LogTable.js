@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import propTypes from 'prop-types';
 import {
   Table,
@@ -12,17 +12,12 @@ import {
   Box,
   Grid,
 } from '@material-ui/core';
-import { Add } from '@material-ui/icons';
+import { Add, Delete } from '@material-ui/icons';
 
 import styles from './styles';
 
-const LogTable = ({ sets, onInputChange }) => {
-  const [setArray, setSetArray] = useState(Array.from(Array(sets).keys()));
+const LogTable = ({ sets, onInputChange, onDeleteSet, onAddSet }) => {
   const classes = styles();
-
-  const handleAddSet = () => {
-    setSetArray((prevSetArray) => [...prevSetArray, prevSetArray.length]);
-  };
 
   return (
     <Box mb={3}>
@@ -32,20 +27,22 @@ const LogTable = ({ sets, onInputChange }) => {
             <TableCell>Satz</TableCell>
             <TableCell>Gewicht in Kg</TableCell>
             <TableCell>Wdh.</TableCell>
+            <TableCell></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {setArray.map((set) => (
-            <TableRow key={`set-info-${set}`}>
-              <TableCell>{set + 1}</TableCell>
+          {sets.map((set, index) => (
+            <TableRow key={`set-info-${index}`}>
+              <TableCell>{index + 1}</TableCell>
               <TableCell>
                 <TextField
                   className={classes.textField}
                   variant="filled"
                   onChange={(event) =>
-                    onInputChange(event.target.value, set, 'weight')
+                    onInputChange(event.target.value, index, 'weight')
                   }
                   type="number"
+                  value={set.weight}
                 />
               </TableCell>
               <TableCell>
@@ -53,10 +50,22 @@ const LogTable = ({ sets, onInputChange }) => {
                   className={classes.textField}
                   variant="filled"
                   onChange={(event) =>
-                    onInputChange(event.target.value, set, 'reps')
+                    onInputChange(event.target.value, index, 'reps')
                   }
                   type="number"
+                  value={set.reps}
                 />
+              </TableCell>
+              <TableCell>
+                <Tooltip title="Satz löschen">
+                  <IconButton
+                    className={classes.delete}
+                    size="small"
+                    onClick={() => onDeleteSet(index)}
+                  >
+                    <Delete fontSize="small" color="secondary" />
+                  </IconButton>
+                </Tooltip>
               </TableCell>
             </TableRow>
           ))}
@@ -64,8 +73,8 @@ const LogTable = ({ sets, onInputChange }) => {
       </Table>
       <Grid item container justify="center">
         <Tooltip title="Satz hinzufügen">
-          <IconButton color="secondary" size="small" onClick={handleAddSet}>
-            <Add />
+          <IconButton size="small" onClick={onAddSet}>
+            <Add color="secondary" />
           </IconButton>
         </Tooltip>
       </Grid>
@@ -74,8 +83,10 @@ const LogTable = ({ sets, onInputChange }) => {
 };
 
 LogTable.propTypes = {
-  sets: propTypes.number,
+  sets: propTypes.array,
   onInputChange: propTypes.func,
+  onDeleteSet: propTypes.func,
+  onAddSet: propTypes.func,
 };
 
 export default LogTable;

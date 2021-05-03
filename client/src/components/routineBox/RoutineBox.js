@@ -19,9 +19,9 @@ const RoutineBox = ({ routine }) => {
     );
 
     return (
-      <div className={classes.exercise}>
+      <div className={classes.exercise} key={routineName + exercise.id}>
         <img src={currentExercise.image} alt={currentExercise.name} />
-        <Typography key={routineName + exercise.id}>
+        <Typography>
           {exercise.sets}x {currentExercise.name}
         </Typography>
       </div>

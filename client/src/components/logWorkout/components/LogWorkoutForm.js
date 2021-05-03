@@ -6,10 +6,24 @@ import ExerciseSets from './ExerciseSets';
 import workoutService from '../../../service/workoutService';
 
 const LogWorkoutForm = ({ onAbortButtonClick }) => {
+  const WORKLOAD_ENTRY = {
+    weight: '',
+    reps: '',
+  };
   const [workoutData, setWorkoutData] = useState({
     routineId: null,
     exercises: [],
   });
+  const workoutDataFilled = () => {
+    const unfilledWorkoutData = workoutData.exercises.filter((exercise) => {
+      return exercise.workload.filter(
+        (exerciseWorkload) =>
+          !exerciseWorkload.weight || !exerciseWorkload.reps,
+      ).length;
+    });
+
+    return unfilledWorkoutData.length === 0;
+  };
 
   const handleSaveLog = async () => {
     const { errorMessage } = await workoutService.addWorkout(workoutData);
@@ -54,12 +68,8 @@ const LogWorkoutForm = ({ onAbortButtonClick }) => {
     if (!routine) return;
 
     const mappedExercises = routine.exercises.map((exercise) => {
-      const workloadEntry = {
-        weight: 0,
-        reps: 0,
-      };
       const workload = Array.from(
-        Array(exercise.sets).fill(workloadEntry, 0, exercise.sets.length),
+        Array(exercise.sets).fill(WORKLOAD_ENTRY, 0, exercise.sets.length),
       );
 
       return {
@@ -74,17 +84,66 @@ const LogWorkoutForm = ({ onAbortButtonClick }) => {
     });
   };
 
+  const handleDeleteSet = (set, exerciseId) => {
+    setWorkoutData((prevWorkoutData) => {
+      const updatedWorkoutData = prevWorkoutData.exercises.map((exercise) => {
+        if (exercise.id === exerciseId) {
+          const updatedExerciseWorkload = exercise.workload.filter(
+            (_, index) => index !== set,
+          );
+
+          return {
+            ...exercise,
+            workload: updatedExerciseWorkload,
+          };
+        }
+
+        return exercise;
+      });
+
+      return {
+        ...prevWorkoutData,
+        exercises: [...updatedWorkoutData],
+      };
+    });
+  };
+
+  const handleAddSet = (exerciseId) => {
+    setWorkoutData((prevWorkoutData) => {
+      const updatedWorkoutData = prevWorkoutData.exercises.map((exercise) => {
+        if (exercise.id === exerciseId) {
+          exercise.workload.push(WORKLOAD_ENTRY);
+        }
+
+        return exercise;
+      });
+
+      return {
+        ...prevWorkoutData,
+        exercises: [...updatedWorkoutData],
+      };
+    });
+  };
+
   return (
     <Grid container>
       <Grid item container xs={12} justify="center">
         <ExerciseSets
+          onAddSet={handleAddSet}
           onInputChange={handleInputChange}
           onRoutineSelect={handleRoutineSelect}
+          onDeleteSet={handleDeleteSet}
+          routineExercises={workoutData.exercises}
         />
       </Grid>
       <Grid item container xs={12} justify="center">
         <Box mb={2}>
-          <Button color="primary" variant="contained" onClick={handleSaveLog}>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={handleSaveLog}
+            disabled={!workoutData.routineId || !workoutDataFilled()}
+          >
             Speichern
           </Button>
         </Box>
