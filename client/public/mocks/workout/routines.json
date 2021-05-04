@@ -1,6 +1,5 @@
 [
   {
-    "id": 1234567,
     "name": "WKM Plan A",
     "exercises": [
       {
@@ -18,7 +17,6 @@
     ]
   },
   {
-    "id": 1234569,
     "name": "WKM Plan B",
     "exercises": [
       {

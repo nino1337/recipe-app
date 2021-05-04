@@ -3,6 +3,7 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
+const initialExercises = require('./data/exercises.json');
 
 const app = express();
 
@@ -10,7 +11,11 @@ app.use(cors());
 app.use(morgan('combined'));
 
 // import environmental variables from our .env file
-dotenv.config();
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config({ path: `${__dirname}/.env.production` });
+} else {
+  dotenv.config();
+}
 
 // connect to database
 mongoose
@@ -18,10 +23,18 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log('connected to mongodb'))
+  .then((db) => {
+    db.connection.collections.exercises.insertMany(initialExercises);
+  })
+
   .catch((error) => console.log(`could not connect to mongodb: ${error}`));
 
 app.use(express.json());
+
+// implement routes
+const routes = require('./routes');
+
+app.use('/', routes);
 
 const port = parseInt(process.env.PORT, 10);
 app.listen(port, () =>

@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
+const dotenv = require('dotenv');
 const routes = require('./routes');
 
 const app = express();
@@ -11,7 +12,11 @@ app.use(cors());
 app.use(morgan('combined'));
 
 // import environmental variables from our .env file
-require('dotenv').config();
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config({ path: `${__dirname}/.env.production` });
+} else {
+  dotenv.config();
+}
 
 // connect to mongodb
 mongoose
