@@ -3,7 +3,6 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 const cors = require('cors');
-const initialExercises = require('./data/exercises.json');
 
 const app = express();
 
@@ -23,10 +22,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then((db) => {
-    db.connection.collections.exercises.insertMany(initialExercises);
-  })
-
+  .then(() => console.log('connected to mongodb'))
   .catch((error) => console.log(`could not connect to mongodb: ${error}`));
 
 app.use(express.json());

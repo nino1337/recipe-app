@@ -1,21 +1,21 @@
 GET http://localhost:8000/api/routine HTTP/1.1
-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwNTVlMmVmNjRkMzAwMWFjYmFlOTMiLCJpYXQiOjE2MjAxMzYzOTQsImV4cCI6MTYyMDE2NTE5NH0.FodpAoRzppti0Wp8rhkRwWnkLqM4W8F_mJU-CQSEVbY
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwNTVlMmVmNjRkMzAwMWFjYmFlOTMiLCJpYXQiOjE2MjAyMTU2NDQsImV4cCI6MTYyMDI0NDQ0NH0.tJIV8gmxjmS-QFDcEb-z5kDviEaRHD8cCmODQOez_RA
 
 ### 
 
 POST http://localhost:8000/api/routine HTTP/1.1
 content-type: application/json
-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwNTVlMmVmNjRkMzAwMWFjYmFlOTMiLCJpYXQiOjE2MjAxMzYzOTQsImV4cCI6MTYyMDE2NTE5NH0.FodpAoRzppti0Wp8rhkRwWnkLqM4W8F_mJU-CQSEVbY
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwNTVlMmVmNjRkMzAwMWFjYmFlOTMiLCJpYXQiOjE2MjAyMTU2NDQsImV4cCI6MTYyMDI0NDQ0NH0.tJIV8gmxjmS-QFDcEb-z5kDviEaRHD8cCmODQOez_RA
 
 {
     "name": "sample routine 6",
     "exercises": [
         {
-            "id": 6,
+            "name": "Langhantel-Rudern",
             "sets": 3
         },
         {
-            "id": 4,
+            "name": "Military-Press",
             "sets": 3
         }
     ]
@@ -25,7 +25,7 @@ auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwNTVlMmVmNjRkMzA
 
 DELETE http://localhost:8000/api/routine HTTP/1.1
 content-type: application/json
-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwNTVlMmVmNjRkMzAwMWFjYmFlOTMiLCJpYXQiOjE2MjAxMzYzOTQsImV4cCI6MTYyMDE2NTE5NH0.FodpAoRzppti0Wp8rhkRwWnkLqM4W8F_mJU-CQSEVbY
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwNTVlMmVmNjRkMzAwMWFjYmFlOTMiLCJpYXQiOjE2MjAyMTU2NDQsImV4cCI6MTYyMDI0NDQ0NH0.tJIV8gmxjmS-QFDcEb-z5kDviEaRHD8cCmODQOez_RA
 
 {
     "name": "sample routine 4"
@@ -33,9 +33,14 @@ auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwNTVlMmVmNjRkMzA
 
 ###
 
+GET http://localhost:8000/api/exercise HTTP/1.1
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwNTVlMmVmNjRkMzAwMWFjYmFlOTMiLCJpYXQiOjE2MjAyMTU2NDQsImV4cCI6MTYyMDI0NDQ0NH0.tJIV8gmxjmS-QFDcEb-z5kDviEaRHD8cCmODQOez_RA
+
+###
+
 POST http://localhost:8000/api/exercise HTTP/1.1
 content-type: application/json
-auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwNTVlMmVmNjRkMzAwMWFjYmFlOTMiLCJpYXQiOjE2MjAxMzYzOTQsImV4cCI6MTYyMDE2NTE5NH0.FodpAoRzppti0Wp8rhkRwWnkLqM4W8F_mJU-CQSEVbY
+auth-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDcwNTVlMmVmNjRkMzAwMWFjYmFlOTMiLCJpYXQiOjE2MjAyMTU2NDQsImV4cCI6MTYyMDI0NDQ0NH0.tJIV8gmxjmS-QFDcEb-z5kDviEaRHD8cCmODQOez_RA
 
 {
     "name": "Langhantelrudern",

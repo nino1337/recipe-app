@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Joi = require('@hapi/joi');
 
 const Exercise = new mongoose.Schema({
-  id: {
-    type: Number,
+  name: {
+    type: String,
     required: true,
   },
   sets: {
@@ -30,7 +30,7 @@ const Routine = new mongoose.Schema({
 
 const validateRoutine = (routine) => {
   const exerciseSchema = Joi.object().keys({
-    id: Joi.number().required(),
+    name: Joi.string().required(),
     sets: Joi.number().required(),
   });
   const schema = Joi.object({

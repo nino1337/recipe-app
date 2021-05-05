@@ -1,11 +1,12 @@
 const { Exercise, validateExercise } = require('../model/exercise');
+const defaultExercises = require('../data/exercises.json');
 
 exports.getExercises = async (req, res) => {
   try {
     const userId = req.user._id;
-    const routines = await Exercise.find({ userId }).select('-userId');
+    const exercises = await Exercise.find({ userId }).select('-userId');
 
-    return res.status(200).send(routines);
+    return res.status(200).send([...defaultExercises, ...exercises]);
   } catch (err) {
     res.status(500).send(err);
   }
@@ -17,8 +18,14 @@ exports.addExercise = async (req, res) => {
   if (error) return res.status(400).send(error.details[0].message);
 
   try {
+    const isBasicExercise =
+      defaultExercises.filter((exercise) => exercise.name === req.body.name)
+        .length >= 1;
     // check if exercise with name already exists
-    if (await Exercise.exists({ name: req.body.name, userId: req.user._id })) {
+    if (
+      isBasicExercise ||
+      (await Exercise.exists({ name: req.body.name, userId: req.user._id }))
+    ) {
       return res.sendStatus(409);
     }
 

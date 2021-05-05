@@ -7,12 +7,14 @@ const Exercise = new mongoose.Schema({
     required: true,
   },
   image: String,
+  userId: String,
 });
 
 const validateExercise = (exercise) => {
   const schema = Joi.object().keys({
     name: Joi.string().required(),
     image: Joi.string(),
+    userId: Joi.string(),
   });
 
   return schema.validate(exercise);
